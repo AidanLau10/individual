@@ -49,18 +49,18 @@ class Post(db.Model):
     # returns dictionary
     def read(self):
         # encode image
-        path = app.config['UPLOAD_FOLDER']
-        file = os.path.join(path, self.image)
-        file_text = open(file, 'rb')
-        file_read = file_text.read()
-        file_encode = base64.encodebytes(file_read)
+        #path = app.config['UPLOAD_FOLDER']
+        #file = os.path.join(path, self.image)
+        #file_text = open(file, 'rb')
+        #file_read = file_text.read()
+        # file_encode = base64.encodebytes(file_read)
         
         return {
             "id": self.id,
             "userID": self.userID,
             "note": self.note,
             "image": self.image,
-            "base64": str(file_encode)
+            #"base64": str(file_encode)
         }
 
 
@@ -148,7 +148,7 @@ class User(db.Model):
     # output content using json dumps, this is ready for API response
     def __str__(self):
         return json.dumps(self.read())
-
+        #return f"id: {self.id}"
     # CRUD create/add a new record to the table
     # returns self or None on error
     def create(self):
