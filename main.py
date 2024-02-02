@@ -15,7 +15,7 @@ from api.player import player_api
 # database migrations
 from model.users import initUsers
 from model.players import initPlayers
-
+from api.jwt_auth import jwt_bp
 # setup App pages
 from projects.projects import app_projects # Blueprint directory import projects definition
 
@@ -24,6 +24,7 @@ from projects.projects import app_projects # Blueprint directory import projects
 db.init_app(app)
 
 # register URIs
+app.register_blueprint(jwt_bp)
 app.register_blueprint(user_api) # register api routes
 app.register_blueprint(player_api)
 app.register_blueprint(app_projects) # register app pages
@@ -45,7 +46,7 @@ def table():
 def before_request():
     # Check if the request came from a specific origin
     allowed_origin = request.headers.get('Origin')
-    if allowed_origin in ['http://localhost:4100', 'http://127.0.0.1:4100', 'https://nighthawkcoders.github.io']:
+    if allowed_origin in ['http://localhost:4100', 'http://127.0.0.1:4100', 'https://nighthawkcoders.github.io', 'http://127.0.0.1:4100/cptprojectfrontend/login/', 'http://127.0.0.1:4100/cptprojectfrontend/']:
         cors._origins = allowed_origin
 
 # Create an AppGroup for custom commands

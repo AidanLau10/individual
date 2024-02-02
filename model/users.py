@@ -144,7 +144,7 @@ class User(db.Model):
     # dob property is returned as string, to avoid unfriendly outcomes
     @property
     def dob(self):
-        dob_string = self._dob.strftime('%m-%d-%Y')
+        dob_string = self._dob.strftime('%Y-%m-%d')
         return dob_string
     
     # dob should be have verification for type date
